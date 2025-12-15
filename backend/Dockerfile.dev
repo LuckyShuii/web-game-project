@@ -1,0 +1,34 @@
+FROM php:8.4-fpm
+
+# System deps + PHP extensions
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    unzip \
+    libicu-dev \
+    libzip-dev \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    && docker-php-ext-install \
+    pdo_mysql \
+    intl \
+    zip \
+    && pecl install xdebug \
+    && docker-php-ext-enable xdebug \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+# Symfony CLI (DEV)
+RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | bash \
+    && apt-get install -y symfony-cli
+
+WORKDIR /var/www/html
+
+ENV APP_ENV=dev
+ENV APP_DEBUG=1
+
+CMD ["php-fpm"]

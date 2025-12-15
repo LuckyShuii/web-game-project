@@ -1,0 +1,65 @@
+name: web-game-app
+
+services:
+  db:
+    image: mysql:8.4
+    container_name: webgame-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: webgame
+      MYSQL_USER: lboillot
+      MYSQL_PASSWORD: lboillot
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - webgame-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: webgame-frontend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      NODE_ENV: development
+    ports:
+      - "7002:7002"
+      - "5173:5173"
+    networks:
+      - webgame-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    container_name: webgame-backend
+    volumes:
+      - ./backend:/var/www/html
+    environment:
+      APP_ENV: dev
+      APP_DEBUG: 1
+      DATABASE_URL: mysql://lboillot:lboillot@db:3306/webgame
+    networks:
+      - webgame-network
+
+  apigateway:
+    image: nginx
+    container_name: webgame-apigateway
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/nginx.conf:ro
+      - ./backend/public:/var/www/html/public:ro
+    ports:
+      - "8081:80"
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - webgame-network
+
+volumes:
+  db-data:
+
+networks:
+  webgame-network:
