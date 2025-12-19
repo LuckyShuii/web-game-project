@@ -20,20 +20,28 @@ final class Character
         return $this->stats;
     }
 
+    public function restoreMana(int $amount): void
+    {
+        $this->stats->restoreMana($amount);
+    }
+
     public function getClass(): string
     {
-        // return $this->class;
         return 'Warrior';
     }
 
     public function getRace(): string
     {
-        // return $this->race
         return 'Human';
     }
 
     public function isAlive(): bool
     {
         return !$this->stats->isDead();
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 }

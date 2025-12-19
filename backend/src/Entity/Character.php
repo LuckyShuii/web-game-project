@@ -6,6 +6,7 @@ use App\Repository\CharacterRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Player;
 use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: CharacterRepository::class)]
@@ -13,8 +14,8 @@ use Symfony\Component\Uid\Uuid;
 class Character
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'uuid', unique: true)]
-    private Uuid $id;
+    #[ORM\Column(type: 'guid', unique: true)]
+    private string $id;
 
     #[ORM\ManyToOne(inversedBy: 'characters')]
     #[ORM\JoinColumn(nullable: false)]
@@ -37,7 +38,7 @@ class Character
 
     public function __construct(Player $player, string $class, string $race)
     {
-        $this->id = Uuid::v7();
+        $this->id = Uuid::v7()->toRfc4122();
         $this->player = $player;
         $this->class = $class;
         $this->race = $race;
@@ -45,7 +46,7 @@ class Character
         $this->combats = new ArrayCollection();
     }
 
-    public function getId(): Uuid
+    public function getId(): string
     {
         return $this->id;
     }

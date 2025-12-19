@@ -16,6 +16,14 @@ class CharacterRepository extends ServiceEntityRepository
         parent::__construct($registry, Character::class);
     }
 
+    public function save(Character $character, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($character);
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
     //    /**
     //     * @return Character[] Returns an array of Character objects
     //     */

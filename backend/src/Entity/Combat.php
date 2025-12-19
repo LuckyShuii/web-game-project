@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Player;
 use App\Repository\CombatRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;
@@ -10,8 +11,8 @@ use Symfony\Component\Uid\Uuid;
 class Combat
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'uuid', unique: true)]
-    private Uuid $id;
+    #[ORM\Column(type: 'guid', unique: true)]
+    private string $id;
 
     #[ORM\ManyToOne(inversedBy: 'combats')]
     #[ORM\JoinColumn(nullable: false)]
@@ -34,14 +35,14 @@ class Combat
 
     public function __construct(Character $character, string $enemyCode)
     {
-        $this->id = Uuid::v7();
+        $this->id = Uuid::v7()->toRfc4122();
         $this->character = $character;
         $this->enemyCode = $enemyCode;
         $this->status = 'IN_PROGRESS';
         $this->startedAt = new \DateTimeImmutable();
     }
 
-    public function getId(): Uuid
+    public function getId(): string
     {
         return $this->id;
     }

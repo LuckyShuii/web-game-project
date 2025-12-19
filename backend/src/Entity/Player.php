@@ -12,8 +12,8 @@ use Symfony\Component\Uid\Uuid;
 class Player
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'uuid', unique: true)]
-    private Uuid $id;
+    #[ORM\Column(type: 'guid', unique: true)]
+    private string $id;
 
     #[ORM\Column]
     private \DateTimeImmutable $createdAt;
@@ -26,12 +26,12 @@ class Player
 
     public function __construct()
     {
-        $this->id = Uuid::v7();
+        $this->id = Uuid::v7()->toRfc4122();
         $this->createdAt = new \DateTimeImmutable();
         $this->characters = new ArrayCollection();
     }
 
-    public function getId(): Uuid
+    public function getId(): string
     {
         return $this->id;
     }

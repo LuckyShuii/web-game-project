@@ -14,7 +14,7 @@ final class HeavyStrike implements SkillInterface
 
     public function getManaCost(): int
     {
-        return 20;
+        return 22;
     }
 
     public function execute(Character $attacker, Character $defender): int

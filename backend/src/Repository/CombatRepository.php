@@ -16,6 +16,15 @@ class CombatRepository extends ServiceEntityRepository
         parent::__construct($registry, Combat::class);
     }
 
+    public function save(Combat $combat, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($combat);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
     //    /**
     //     * @return Combat[] Returns an array of Combat objects
     //     */

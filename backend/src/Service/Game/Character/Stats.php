@@ -11,18 +11,21 @@ final class Stats
     private int $attack;
     private int $defense;
     private int $mana;
+    private int $maxMana;
 
     public function __construct(
         int $maxHp,
         int $attack,
         int $defense,
-        int $mana
+        int $mana,
+        int $maxMana
     ) {
         $this->maxHp = $maxHp;
         $this->hp = $maxHp;
         $this->attack = $attack;
         $this->defense = $defense;
         $this->mana = $mana;
+        $this->maxMana = $maxMana;
     }
 
     public function takeDamage(int $amount): void
@@ -33,6 +36,14 @@ final class Stats
     public function hasMana(int $cost): bool
     {
         return $this->mana >= $cost;
+    }
+
+    public function restoreMana(int $amount): void
+    {
+        $this->mana = min(
+            $this->mana + $amount,
+            $this->maxMana
+        );
     }
 
     public function consumeMana(int $cost): void
@@ -49,25 +60,33 @@ final class Stats
         return $this->hp <= 0;
     }
 
-    // getters
     public function getHp(): int
     {
         return $this->hp;
     }
+
     public function getMaxHp(): int
     {
         return $this->maxHp;
     }
+
     public function getAttack(): int
     {
         return $this->attack;
     }
+
     public function getDefense(): int
     {
         return $this->defense;
     }
+
     public function getMana(): int
     {
         return $this->mana;
+    }
+
+    public function getMaxMana(): int
+    {
+        return $this->maxMana;
     }
 }
