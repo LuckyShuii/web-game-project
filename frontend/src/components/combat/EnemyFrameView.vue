@@ -5,7 +5,7 @@ import HealthView from '../HealthView.vue';
 
 <template>
     <section id="enemyFrameView">
-        <HealthView :health="'45/100'" id="healthView" />
+        <HealthView :health="'12/48'" id="healthView" />
         <img src="/img/enemy-emerald-princess.png" alt="Enemy Avatar" id="enemyAvatar" />
         <h3 id="enemyName">Emerald Princess</h3>
     </section>

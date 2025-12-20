@@ -1,0 +1,56 @@
+#spellsFrameView {
+    text-align: center;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    margin: 45px 65px;
+    bottom: 0;
+    right: 0;
+
+    .manaBarWrapper {
+        position: relative;
+        width: 100%;
+    }
+
+    #manaBar {
+        width: 100%;
+        height: 75px;
+    }
+
+    .manaText {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        text-shadow: 0 0 4px rgba(0, 0, 0, 0.9);
+    }
+
+    .spellRow {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 15px;
+
+        .spell:hover {
+            cursor: pointer;
+            background-color: #dcdcdc;
+            scale: 1.02;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .spell:active {
+            border: 2px solid purple;
+            background-color: #d4d4d4;
+        }
+    }
+}

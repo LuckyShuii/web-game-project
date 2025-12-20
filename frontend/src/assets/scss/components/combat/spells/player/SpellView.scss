@@ -1,0 +1,43 @@
+.spellView {
+    text-align: center;
+    border: 2px solid #333;
+    border-radius: 10px;
+    background-color: #eaeaea;
+    padding: 25px 10px;
+    max-width: 400px;
+    width: 48%;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+
+    .blur {
+        position: absolute;
+        inset: 0;
+        background: rgba(85, 255, 33, 0.1);
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+        border-radius: 10px;
+        z-index: 0;
+    }
+
+    p {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 800;
+        color: #333;
+        text-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
+        z-index: 2;
+        position: relative;
+    }
+
+    .spellCost {
+        font-size: 16px;
+        color: #eaeaea;
+        background-color: #3E5CE3;
+        padding: 4px 8px;
+        border-radius: 5px;
+        position: absolute;
+        top: -10px;
+        right: -10px;
+    }
+}
