@@ -31,6 +31,6 @@ onMounted(() => {
   </div>
 </template>
 
-<style lang="sass" scoped>
+<style scoped>
 @import '@/assets/scss/components/TimerView.scss';
 </style>

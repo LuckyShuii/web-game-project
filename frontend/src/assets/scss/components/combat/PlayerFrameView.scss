@@ -1,0 +1,38 @@
+#playerFrameView {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    align-items: center;
+    margin: 45px 65px;
+    justify-content: center;
+    border: 2px solid #444;
+    border-radius: 12px;
+    padding: 10px 15px;
+    background-color: #eaeaea;
+    max-width: 600px;
+    width: 100%;
+    max-height: 400px;
+    height: 100%;
+
+    #playerAvatar {
+        width: 200px;
+        height: 200px;
+        overflow: hidden;
+        transform: scaleX(-1);
+    }
+
+    #healthView {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    #playerName {
+        position: absolute;
+        bottom: -10px;
+        left: 20px;
+        font-size: 24px;
+        color: #222;
+    }
+}

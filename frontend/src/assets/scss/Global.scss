@@ -1,0 +1,14 @@
+.health::after {
+  content: '❤️';
+  margin-left: 0.25rem;
+  font-size: 1.25rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
