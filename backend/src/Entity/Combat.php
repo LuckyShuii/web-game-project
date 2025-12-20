@@ -76,7 +76,7 @@ class Combat
 
     public function getState(): ?array
     {
-        return $this->state;
+        return $this->state ?? [];
     }
 
     public function setState(?array $state): self
@@ -90,5 +90,17 @@ class Combat
         $this->status = $status;
         $this->endedAt = new \DateTimeImmutable();
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->id,
+            'status' => $this->status,
+            'enemy' => $this->enemyCode,
+            'state' => $this->state,
+            'startedAt' => $this->startedAt?->format(DATE_ATOM),
+            'endedAt' => $this->endedAt?->format(DATE_ATOM),
+        ];
     }
 }
