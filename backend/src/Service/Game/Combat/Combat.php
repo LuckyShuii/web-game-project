@@ -11,7 +11,7 @@ final class Combat
     private Character $enemy;
     private string $turn; // PLAYER | ENEMY
     private int $turnCount = 1;
-    private const PLAYER_MANA_REGEN = 12;
+    private const PLAYER_MANA_REGEN = 5;
 
     public function __construct(Character $player, Character $enemy)
     {

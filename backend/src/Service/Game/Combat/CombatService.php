@@ -22,8 +22,8 @@ final class CombatService
             'turnCount' => 1,
             'player' => [
                 'hp' => 100,
-                'mana' => 50,
-                'maxMana' => 50,
+                'mana' => 100,
+                'maxMana' => 100,
             ],
             'enemy' => [
                 'code' => 'orc',
